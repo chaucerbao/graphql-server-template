@@ -10,4 +10,4 @@ const context = {
   db: Knex(config.database)
 }
 
-module.exports = microGraphql({schema, context})
+export default microGraphql({schema, context})
