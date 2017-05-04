@@ -1,13 +1,13 @@
 // Dependencies
 import {microGraphql} from 'graphql-server-micro'
-import * as knex from 'knex'
+import * as Knex from 'knex'
 
 import config from './config'
 import schema from './schema'
 
 // Context
 const context = {
-  db: knex(config.database)
+  db: Knex(config.database)
 }
 
 module.exports = microGraphql({schema, context})
