@@ -1,5 +1,6 @@
 /dist
 /node_modules
+/src/config/database.ts
 
 .DS_Store
 npm-debug.log*
