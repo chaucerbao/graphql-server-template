@@ -1,0 +1,45 @@
+{
+  "name": "graphql-service-template",
+  "version": "0.0.1",
+  "private": true,
+  "eslintConfig": {
+    "parser": "typescript-eslint-parser",
+    "extends": "standard"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "prettier-eslint --write",
+      "eslint",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@types/graphql": "^0.9.0",
+    "@types/lodash": "^4.14.63",
+    "@types/node": "^7.0.16",
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "husky": "^0.13.3",
+    "lint-staged": "^3.4.1",
+    "nodemon": "^1.11.0",
+    "prettier-eslint-cli": "^3.4.2",
+    "typescript": "^2.3.2",
+    "typescript-eslint-parser": "^2.1.0"
+  },
+  "dependencies": {
+    "graphql": "^0.9.6",
+    "graphql-server-micro": "^0.7.2",
+    "graphql-tools": "^0.11.0",
+    "lodash": "^4.17.4",
+    "micro": "^7.3.2"
+  },
+  "scripts": {
+    "start": "node_modules/.bin/tsc && node_modules/.bin/micro dist/",
+    "develop": "node_modules/.bin/nodemon --ext ts --watch src/ --exec 'npm start'",
+    "precommit": "lint-staged"
+  }
+}
