@@ -2,6 +2,7 @@
   "compilerOptions": {
     "rootDir": "src/",
     "outDir": "dist/",
+    "lib": ["ES2015"],
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

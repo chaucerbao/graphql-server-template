@@ -1,13 +1,17 @@
 // Dependencies
-import {microGraphql} from 'graphql-server-micro'
-import * as Knex from 'knex'
+import {router, get, post} from 'microrouter'
 
+// Configuration
 import config from './config'
 import schema from './schema'
 
-// Context
-const context = {
-  db: Knex(config.database)
-}
+// Routes
+import auth from './routes/auth'
+import graphql from './routes/graphql'
 
-export default microGraphql({schema, context})
+// Server
+export default router(
+  post('/auth', auth({secret: config.secret})),
+  get('/*', graphql({config, schema})),
+  post('/*', graphql({config, schema}))
+)
