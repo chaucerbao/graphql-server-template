@@ -1,6 +1,10 @@
+interface Arguments {
+  id: number
+}
+
 export default {
   Query: {
-    user (root: undefined, {id}: {id: number}) {
+    user (_root: undefined, {id}: Arguments) {
       return {
         id,
         email: 'a@b.cd'

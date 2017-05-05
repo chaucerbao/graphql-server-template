@@ -4,7 +4,10 @@
   "private": true,
   "eslintConfig": {
     "parser": "typescript-eslint-parser",
-    "extends": "standard"
+    "extends": "standard",
+    "rules": {
+      "no-undef": "off"
+    }
   },
   "lint-staged": {
     "src/**/*.ts": [
