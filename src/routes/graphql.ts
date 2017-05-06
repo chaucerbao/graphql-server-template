@@ -25,13 +25,13 @@ export default ({config, schema}: Options) => {
       try {
         jwtPayload = jwt.verify(token, config.secret)
       } catch (err) {
-        return send(res, 401, {
+        send(res, 401, {
           error: err
         })
       }
     }
 
-    return microGraphql({
+    microGraphql({
       schema,
       context: assign(context, {viewer: jwtPayload.viewer})
     })(req, res)
