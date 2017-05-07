@@ -1,1 +1,1 @@
-module.exports = require('./dist/config').default
+module.exports = require('./dist/config').default.database
