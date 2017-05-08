@@ -1,1 +1,1 @@
-module.exports = require('./dist/config').default.database
+module.exports = require('./dist/config').default.knex

@@ -1,9 +1,17 @@
 export default {
   secret: '',
-  database: {
-    client: 'sqlite3',
-    connection: {
-      filename: './db.sqlite3'
+  knex: {
+    development: {
+      client: 'sqlite3',
+      connection: {
+        filename: './db.sqlite'
+      },
+      migrations: {
+        directory: './database/migrations'
+      },
+      seeds: {
+        directory: './database/seeds'
+      }
     }
   }
 }
