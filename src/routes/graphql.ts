@@ -1,20 +1,20 @@
 // Dependencies
-import {IncomingMessage, ServerResponse} from 'http'
-import {send} from 'micro'
-import {microGraphql} from 'graphql-server-micro'
-import {assign} from 'lodash'
-import {GraphQLSchema} from 'graphql'
+import { IncomingMessage, ServerResponse } from 'http'
+import { send } from 'micro'
+import { microGraphql } from 'graphql-server-micro'
+import { assign } from 'lodash'
+import { GraphQLSchema } from 'graphql'
 import * as jwt from 'jsonwebtoken'
 import * as Knex from 'knex'
 
 // Route handler
-export default ({config, schema}: Options) => {
+export default ({ config, schema }: Options) => {
   const context = {
-    db: Knex(config.database)
+    db: Knex(config.knex)
   }
 
   return (req: IncomingMessage, res: ServerResponse) => {
-    const {authorization} = req.headers
+    const { authorization } = req.headers
     let jwtPayload = {
       viewer: {}
     }
@@ -33,7 +33,7 @@ export default ({config, schema}: Options) => {
 
     microGraphql({
       schema,
-      context: assign(context, {viewer: jwtPayload.viewer})
+      context: assign(context, { viewer: jwtPayload.viewer })
     })(req, res)
   }
 }
@@ -42,7 +42,7 @@ export default ({config, schema}: Options) => {
 interface Options {
   config: {
     secret: string,
-    database: Knex.Config
+    knex: Knex.Config
   },
   schema: GraphQLSchema
 }
