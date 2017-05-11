@@ -1,6 +1,6 @@
 // Dependencies
-import {makeExecutableSchema} from 'graphql-tools'
-import {merge} from 'lodash'
+import { makeExecutableSchema } from 'graphql-tools'
+import { merge } from 'lodash'
 
 // Schemas
 import user from './user'
@@ -11,10 +11,16 @@ const baseSchema = {
   typeDefs: [
     `type Query {
       version: String
+    }`,
+    `type Mutation {
+      version: String
     }`
   ],
   resolvers: {
     Query: {
+      version: () => VERSION
+    },
+    Mutation: {
       version: () => VERSION
     }
   }
