@@ -10,6 +10,7 @@ export default {
     },
     seeds: {
       directory: './database/seeds'
-    }
+    },
+    useNullAsDefault: true
   }
 }
