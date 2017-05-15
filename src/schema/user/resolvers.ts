@@ -4,7 +4,7 @@ interface Arguments {
 
 export default {
   Query: {
-    user (_root: undefined, {id}: Arguments) {
+    user (_root: undefined, { id }: Arguments) {
       return {
         id,
         email: 'a@b.cd'
