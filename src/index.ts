@@ -1,17 +1,42 @@
 // Dependencies
-import { router, get, post } from 'microrouter'
-
-// Configuration
-import config from './config'
+import { IncomingMessage, ServerResponse } from 'http'
+import { microGraphql } from 'graphql-server-micro'
+import { send } from 'micro'
+import stores, { Stores } from './stores'
 import schema from './schema'
 
-// Routes
-import auth from './routes/auth'
-import graphql from './routes/graphql'
+// Interfaces
+export interface Context {
+  stores: Stores,
+  viewer: {}
+}
 
 // Server
-export default router(
-  post('/auth', auth({ secret: config.secret })),
-  get('/*', graphql({ config, schema })),
-  post('/*', graphql({ config, schema }))
-)
+export default async (req: IncomingMessage, res: ServerResponse) => {
+  const context : Context = {
+    stores,
+    viewer: {}
+  }
+
+  // Decode JWT
+  const { authorization } = req.headers
+  if (authorization) {
+    const token = authorization.split(' ').pop()
+
+    try {
+      const user = stores.auth.decode(token)
+      const viewer = await stores.user.getUser(user.id)
+      viewer.roles = await stores.role.getRolesForUser(user.id)
+      context.viewer = viewer
+    } catch (err) {
+      return send(res, 401, {
+        error: err
+      })
+    }
+  }
+
+  return microGraphql({
+    schema,
+    context
+  })(req, res)
+}

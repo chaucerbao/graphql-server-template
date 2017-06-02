@@ -5,6 +5,7 @@ export default `
 
   type User {
     id: ID!
-    email: String
+    email: String!
+    roles: [Role]!
   }
 `

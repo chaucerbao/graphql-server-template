@@ -3,33 +3,37 @@ import { makeExecutableSchema } from 'graphql-tools'
 import { merge } from 'lodash'
 
 // Schemas
+import auth from './auth'
+import role from './role'
 import user from './user'
 
-const VERSION = '0.0.1'
+const schemas = [auth, role, user]
 
+const VERSION = '0.0.1'
 const baseSchema = {
   typeDefs: [
     `type Query {
       version: String
     }`,
+
     `type Mutation {
       version: String
     }`
   ],
+
   resolvers: {
     Query: {
       version: () => VERSION
     },
+
     Mutation: {
       version: () => VERSION
     }
   }
 }
 
-const schemas = [user]
-
 // Generate the GraphQL Schema
-const graphqlSchema = makeExecutableSchema(
+export default makeExecutableSchema(
   schemas.reduce((aggregate, schema) => {
     aggregate.typeDefs.push(schema.types)
     aggregate.resolvers = merge(aggregate.resolvers, schema.resolvers)
@@ -37,5 +41,3 @@ const graphqlSchema = makeExecutableSchema(
     return aggregate
   }, baseSchema)
 )
-
-export default graphqlSchema
