@@ -1,6 +1,6 @@
 // Dependencies
 import BaseStore from './base'
-import { QueryBuilder } from 'knex'
+import {QueryBuilder} from 'knex'
 
 // Store
 class RoleStore extends BaseStore {
@@ -13,7 +13,7 @@ class RoleStore extends BaseStore {
       .select('id', 'name')
       .from('roles')
       .innerJoin('roles_users', 'roles.id', 'roles_users.role_id')
-      .where({ user_id: userId })
+      .where({user_id: userId})
       .orderBy('name')
   }
 }

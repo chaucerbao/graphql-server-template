@@ -4,5 +4,5 @@ exports.seed = async function (knex) {
 
   await knex(tableName).del()
 
-  return knex(tableName).insert([{ name: 'Admin' }])
+  return knex(tableName).insert([{name: 'Admin'}])
 }

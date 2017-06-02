@@ -15,10 +15,10 @@ class AuthStore extends BaseStore {
     const user = await this._context.db
       .first('id', 'password')
       .from('users')
-      .where({ email })
+      .where({email})
 
     if (user && bcrypt.compareSync(password, user.password)) {
-      const payload : Payload = { id: user.id }
+      const payload : Payload = {id: user.id}
       const token = jwt.sign(payload, config.secret, {
         expiresIn: '2h'
       })

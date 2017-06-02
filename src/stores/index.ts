@@ -18,7 +18,7 @@ export interface Context {
   db: Knex
 }
 
-const context : Context = { db: Knex(config.knex) }
+const context : Context = {db: Knex(config.knex)}
 const stores : Stores = {
   auth: new AuthStore(this, context),
   role: new RoleStore(this, context),

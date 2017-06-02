@@ -8,6 +8,6 @@ exports.seed = async function (knex) {
   await knex(tableName).del()
 
   return knex(tableName).insert([
-    { email: 'admin@site.com', password: bcrypt.hashSync('secret') }
+    {email: 'admin@site.com', password: bcrypt.hashSync('secret')}
   ])
 }

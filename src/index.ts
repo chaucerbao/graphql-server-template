@@ -1,8 +1,8 @@
 // Dependencies
-import { IncomingMessage, ServerResponse } from 'http'
-import { microGraphql } from 'graphql-server-micro'
-import { send } from 'micro'
-import stores, { Stores } from './stores'
+import {IncomingMessage, ServerResponse} from 'http'
+import {microGraphql} from 'graphql-server-micro'
+import {send} from 'micro'
+import stores, {Stores} from './stores'
 import schema from './schema'
 
 // Interfaces
@@ -19,7 +19,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   }
 
   // Decode JWT
-  const { authorization } = req.headers
+  const {authorization} = req.headers
   if (authorization) {
     const token = authorization.split(' ').pop()
 

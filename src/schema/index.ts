@@ -1,6 +1,6 @@
 // Dependencies
-import { makeExecutableSchema } from 'graphql-tools'
-import { merge } from 'lodash'
+import {makeExecutableSchema} from 'graphql-tools'
+import {merge} from 'lodash'
 
 // Schemas
 import auth from './auth'
