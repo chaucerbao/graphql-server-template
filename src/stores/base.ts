@@ -1,13 +1,11 @@
 // Dependencies
-import {Stores, Context} from './'
+import { Context } from './'
 
 // Store
 class BaseStore {
-  _stores: Stores
   _context: Context
 
-  constructor (stores: Stores, context: Context) {
-    this._stores = stores
+  constructor(context: Context) {
     this._context = context
   }
 }

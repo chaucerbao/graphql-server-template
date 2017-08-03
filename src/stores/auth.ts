@@ -11,14 +11,14 @@ interface Payload {
 
 // Store
 class AuthStore extends BaseStore {
-  async authenticate (email: string, password: string): Promise<string> {
+  async authenticate(email: string, password: string): Promise<string> {
     const user = await this._context.db
       .first('id', 'password')
       .from('users')
-      .where({email})
+      .where({ email })
 
     if (user && bcrypt.compareSync(password, user.password)) {
-      const payload : Payload = {id: user.id}
+      const payload: Payload = { id: user.id }
       const token = jwt.sign(payload, config.secret, {
         expiresIn: '2h'
       })
@@ -29,8 +29,8 @@ class AuthStore extends BaseStore {
     return ''
   }
 
-  decode (token: string): Payload {
-    return jwt.verify(token, config.secret)
+  decode(token: string): Payload {
+    return jwt.verify(token, config.secret) as Payload
   }
 }
 

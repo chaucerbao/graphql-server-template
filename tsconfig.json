@@ -1,15 +1,14 @@
 {
   "compilerOptions": {
-    "rootDir": "src/",
-    "outDir": "dist/",
+    "target": "es2015",
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "es2015",
-    "sourceMap": true,
+    "outDir": "dist/",
+    "lib": ["es2015", "esnext.asynciterable"],
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitAny": true,
-    "noImplicitThis": false
-  }
+    "sourceMap": true
+  },
+  "include": ["src/**/*.ts"]
 }

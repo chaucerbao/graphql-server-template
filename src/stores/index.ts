@@ -9,8 +9,8 @@ import UserStore from './user'
 
 // Interfaces
 export interface Stores {
-  auth: AuthStore,
-  role: RoleStore,
+  auth: AuthStore
+  role: RoleStore
   user: UserStore
 }
 
@@ -18,11 +18,11 @@ export interface Context {
   db: Knex
 }
 
-const context : Context = {db: Knex(config.knex)}
-const stores : Stores = {
-  auth: new AuthStore(this, context),
-  role: new RoleStore(this, context),
-  user: new UserStore(this, context)
+const context: Context = { db: Knex(config.knex) }
+const stores: Stores = {
+  auth: new AuthStore(context),
+  role: new RoleStore(context),
+  user: new UserStore(context)
 }
 
 // Exports
